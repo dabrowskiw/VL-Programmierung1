@@ -1,0 +1,3 @@
+[submodule "HTWBeamerTemplate"]
+	path = HTWBeamerTemplate
+	url = git@github.com:dabrowskiw/HTWBeamerTemplate.git
