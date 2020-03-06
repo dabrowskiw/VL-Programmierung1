@@ -34,6 +34,23 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Modalitäten}
+	\begin{itemize}
+		\item 2 SWS Vorlesung
+		\begin{itemize}
+			\item Kein Skript, viel Tafel $\rightarrow$ Mitschreiben empfehlenswert
+			\item ...Aber: Sowieso nicht klausurrelevant.
+			\item Fragen bitte immer sofort!
+		\end{itemize}
+		\item 2 SWS Übung
+		\begin{itemize}
+			\item Gruppe A: Frau Ursula Rehbein, Zug 1: Ich
+			\item Betreutes Programmieren: Umsetzen des Vorlesungsstoffes
+			\item Hausaufgaben
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
 \begin{frame}{Programmierung}
 	Programmierung: Computern erklären, was sie tun sollen. \\Zu beachten: Computer
 	\begin{itemize}
@@ -61,7 +78,7 @@
 	Jeder, der den Ball hat, sagt eine Anweisung\\Freiwillige Hilfe: Algorithmus aufschreiben.
 \end{frame}
 
-\begin{frame}{Von Lösiungsidee zu Programm}
+\begin{frame}{Von Lösungsiungsidee zu Programm}
 	Lästige Schreibweise im Beispiel $\rightarrow$ Konventionen, wie Anweisungen geschrieben werden = \textbf{Syntax}. Beispiel:
 	\begin{itemize}
 		\item ``nach'', ``um'', ``Grad'' etc. weglassen: ``Drehen nach links um 10 Grad'' $\rightarrow$ ``Drehen links 10''
@@ -73,27 +90,69 @@
 \end{frame}
 
 \begin{frame}{Für wen machen wir das?}
-	Computer verstehen aber kein ``Drehen'' etc., sondern im Grunde nur:
+	Computer haben aber keine Arme oder Beine - siehe schematischer Computeraufbau (CPU, RAM mit Programm + Daten).\\
+	Sie verstehen also kein ``Drehen'' etc., sondern im Grunde nur:
 	\begin{itemize}
-		\item AusSpeicherHolen(vonAdresse, inRegister)
-		\item Addieren(vonRegister, zuRegister, ergebnisRegister)
-		\item Substrahieren(register, vonRegister, ergebnisRegister)
-		\item InSpeicherSchreiben(nachAdresse, vonRegister)
-		\item SpringeWennRegisterNull(register, sprungWeite)
+		\item Verschieben(was, wohin) \textit{(MOV src dest)}
+		\item Addieren(was, zuWas) \textit{(ADD src dest)}
+		\item SpringeWennRegisterNichtNull(register, sprungWeite) \textit{(JNZ reg diff)}
 	\end{itemize}
+	Jedes Argument kann sein: \%Register, \$Wert, (Speicheradresse)\\
 	Das reicht aber (siehe Computeraufbau)! Beispiele:
 	\begin{itemize}
-		\item Zwei Zahlen multiplizieren
+		\item Zwei Zahlen addieren
+		\item Zahl mit 3 (ohne JNZ)/einer anderen Zahl (mit JNZ) multiplizieren
 		\item Bild auf Bildschirm anzeigen
 	\end{itemize}
-	...aber will man so programmieren?
 \end{frame}
 
-\begin{frame}{Zahlen multiplizieren}
+\begin{frame}[t,fragile]{Zwei Zahlen addieren}
+	Zahlen in Speicheradressen 1 und 2, Ergebnis soll in Speicheradresse 3 stehen
+	\lstset{language=[x86masm]Assembler,texcl=true}
+	\begin{lstlisting}
+mov %Register1 (1)
+mov %Register2 (2)
+add %Register2 %Register1
+mov %Register2 (3)
+	\end{lstlisting}
+	...Wie mache ich daraus eine Multiplikation von (1) mit \$3?
+\end{frame}
+
+\begin{frame}[t,fragile]{Zahl mit 3 multiplizieren}
+	Zahl in Speicheradresse 1, Ergebnis soll in Speicheradresse 3 stehen
+	\lstset{language=[x86masm]Assembler,texcl=true}
+	\begin{lstlisting}
+mov %Register1 (1)
+mov %Register2 (1)
+add %Register2 %Register1
+add %Register2 %Register1
+mov %Register2 (3)
+	\end{lstlisting}
+	...Wie mache ich daraus eine Multipliktion von (1) mit (2)?
+\end{frame}
+
+\begin{frame}[t,fragile]{Zahlen multiplizieren}
+	Zahlen in Speicheradressen 1 und 2, Ergebnis soll in Speicheradresse 3 stehen
+	\lstset{language=[x86masm]Assembler,texcl=true}
+	\begin{lstlisting}
+mov %Register1 (1)
+mov %Register2 (1)
+mov %Register3 (2)
+add %Register2 %Register1
+add %Register3 $-1
+jnz %Register3 $-2
+mov %Register2 (3)
+	\end{lstlisting}
+	...Wie gebe ich den Wert aus? (das wird mit nur 3 Befehlen eklig $\rightarrow$ jne)\\
+	...Wie baue ich ``Drehen(Richtung, Winkel)'' damit?
+\end{frame}
+
+\begin{frame}{Programmiersprachen}
+	Man kann mit Assembler programmieren... Aber will man es?
 \end{frame}
 
 \begin{frame}{Kontrollstrukturen}
-	Frage: Reichen Funktionen und Argumente, um jedes Problem zu lösen? Falls nein, was fehlt?
+%	Frage: Reichen Funktionen und Argumente, um jedes Problem zu lösen? Falls nein, was fehlt?
 \end{frame}
 
 \begin{frame}{Beispiel weiter}
