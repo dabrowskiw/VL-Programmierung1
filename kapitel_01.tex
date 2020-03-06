@@ -189,17 +189,28 @@ add %Register3 $-1
 jnz %Register3 $-2
 mov %Register2 (3)
 	\end{lstlisting}
-	...Wie gebe ich den Wert aus? (das wird mit nur 3 Befehlen eklig $\rightarrow$ jne)\\
-	...Wie sieht das tatsächlich im Rechner aus? $\rightarrow$ Maschinensprache
+	...Wie gebe ich den Wert - z.B. auf 7-Segment-Anzeige - aus? (das wird mit nur 3 Befehlen eklig $\rightarrow$ je Wert1 Wert2 Sprungweite, jmp Sprungweite, Bitmaps)\\
+	...Wie sieht das tatsächlich im Rechner aus? $\rightarrow$ Maschinencode
 	...Wie baue ich ``Drehen(Richtung, Winkel)'' damit?
 \end{frame}
 
 \begin{frame}{Programmiersprachen}
-	Man kann mit Assembler programmieren... Aber will man es?
-	\\Programmiersprachen:
+	Aufgabe der Programmiersprache: Programmcode statt Maschinencode schreiben.
+	\\Man kann mit Assembler programmieren... Aber will man es?
+	\\Höhere Programmiersprachen:
 	\begin{itemize}
 		\item Abstrahieren Hardware-Details auf das nötige Level
-		\item 
+		\item Bieten Funktionen für häufige Aufgaben 
+	\end{itemize}
+	Wie viele Programmiersprachen gibt es?\\
+	\only<2->{Aktuelle Wikipedia-Liste der Programmiersprachen: ca. 1470. Warum gibt so viele?}
+\end{frame}
+
+\begin{frame}{Java}
+	\begin{itemize}
+		\item Sehr populäre Sprache
+		\item Compiliert (Programmcode \only<2->{$\rightarrow$ Bytecode }$\rightarrow$ Maschinencode)
+		\item<2-> Mit virtueller Maschine (``Compile once, run everywhere'')
 	\end{itemize}
 \end{frame}
 
